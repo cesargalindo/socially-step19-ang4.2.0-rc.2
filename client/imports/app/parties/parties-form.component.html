@@ -1,0 +1,57 @@
+<div class="form-container">
+  <div class="container-background">
+    <div class="form-content">
+      <div class="form-center">
+        <h1>Your party is missing?</h1>
+        <h2>Add it now! ></h2>
+      </div>
+      <div class="form-center">
+        <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addParty()">
+          <div style="display: table-row">
+            <div class="form-inputs">
+
+              <md-input-container>
+                <input mdInput mdInput dividerColor="accent" formControlName="name" placeholder="Party name"></input>
+              </md-input-container>
+
+              <br/>
+
+              <md-input-container>
+                <input mdInput dividerColor="accent" formControlName="description" placeholder="Description"></input>
+              </md-input-container>
+
+              <br/>
+
+              <md-input-container>
+                <input mdInput dividerColor="accent" formControlName="location" placeholder="Location name"></input>
+              </md-input-container>
+
+              <br/>
+
+              <md-checkbox formControlName="public">Public party?</md-checkbox>
+
+              <br/><br/>
+
+              <button color="accent" md-raised-button type="submit">Add my party!</button>
+            </div>
+            <div class="form-extras">
+              <sebm-google-map class="new-party-map"
+                               [latitude]="newPartyPosition.lat"
+                               [longitude]="newPartyPosition.lng"
+                               [zoom]="8"
+                               (mapClick)="mapClicked($event)">
+                <sebm-google-map-marker
+                  [latitude]="newPartyPosition.lat"
+                  [longitude]="newPartyPosition.lng">
+                </sebm-google-map-marker>
+              </sebm-google-map>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="!user">
+          Please login in order to create new parties!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
